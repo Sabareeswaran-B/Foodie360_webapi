@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Foodie360.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Foodie360.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController]    
+    [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
     public class OrderStatusController : ControllerBase
     {
         private readonly foodieContext _context;
