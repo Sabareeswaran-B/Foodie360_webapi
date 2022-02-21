@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Foodie360.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Foodie360.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
     public class DiscountController : ControllerBase
     {
         private readonly foodieContext _context;
@@ -23,6 +25,7 @@ namespace Foodie360.Controllers
 
         // GET: api/Discount
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Discount>>> GetDiscounts()
         {
             return await _context.Discounts.ToListAsync();

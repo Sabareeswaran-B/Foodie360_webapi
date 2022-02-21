@@ -16,6 +16,7 @@ namespace Foodie360.Models
         {
         }
 
+
         public virtual DbSet<Cart> Carts { get; set; } = null!;
         public virtual DbSet<Discount> Discounts { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
