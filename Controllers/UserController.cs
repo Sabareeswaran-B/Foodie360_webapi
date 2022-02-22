@@ -53,6 +53,9 @@ namespace Foodie360.Controllers
             {
                 return BadRequest();
             }
+            string password = user.PassWord;
+            string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
+            user.PassWord = passwordHash;
 
             _context.Entry(user).State = EntityState.Modified;
 

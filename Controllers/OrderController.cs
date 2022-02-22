@@ -25,6 +25,7 @@ namespace Foodie360.Controllers
 
         // GET: api/Order
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
             return await _context.Orders.ToListAsync();
@@ -32,6 +33,7 @@ namespace Foodie360.Controllers
 
         // GET: api/Order/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
             var order = await _context.Orders.FindAsync(id);

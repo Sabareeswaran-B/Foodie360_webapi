@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Foodie360.Models;
+using System.IdentityModel.Tokens.Jwt;
+
 namespace Foodie360.Controllers {
     [Route("api/[controller]/[action]")]
     [ApiController]
@@ -27,6 +29,7 @@ namespace Foodie360.Controllers {
                             GuidId = Guid.NewGuid(),
                             UserName = user.UserName,
                             Id = user.UserId,
+                            UserRole = user.UserRole,
                     }, jwtSettings);
                     } else {
                     return BadRequest("wrong password");
@@ -50,5 +53,15 @@ namespace Foodie360.Controllers {
             var query = from u in _context.Users select u;
             return Ok(query);
         }
+
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
+        public IActionResult Logout() {
+            var authorization = Request.Headers.Authorization;
+            var token = authorization[0].Split(" ")[1];
+            var jwthandler = new JwtSecurityTokenHandler();
+            var read = jwthandler.ReadJwtToken(token);
+            return Ok(read);
+        }        
     }
 }

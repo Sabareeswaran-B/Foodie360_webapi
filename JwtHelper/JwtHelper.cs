@@ -9,6 +9,7 @@ namespace Foodie360.JwtHelpers {
                 new Claim("Id", userAccounts.Id.ToString()),
                     new Claim(ClaimTypes.Name, userAccounts.UserName!),
                     new Claim(ClaimTypes.MobilePhone, userAccounts.PhoneNo!),
+                    new Claim(ClaimTypes.Role, userAccounts.UserRole!),
                     new Claim(ClaimTypes.NameIdentifier, Id.ToString()),
                     new Claim(ClaimTypes.Expiration, DateTime.UtcNow.AddDays(1).ToString("MMM ddd dd yyyy HH:mm:ss tt"))
             };
@@ -32,6 +33,7 @@ namespace Foodie360.JwtHelpers {
                 UserToken.Id = model.Id;
                 UserToken.GuidId = Id;
                 UserToken.PhoneNo = model.PhoneNo;
+                UserToken.UserRole = model.UserRole;
                 return UserToken;
             } catch (Exception) {
                 throw;
