@@ -389,6 +389,11 @@ namespace Foodie360.Models
                     .IsUnicode(false)
                     .HasColumnName("phone_no");
 
+                entity.Property(e => e.Email)
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
+                    .HasColumnName("Email");
+
                 entity.Property(e => e.RegNo)
                     .HasMaxLength(100)
                     .IsUnicode(false)

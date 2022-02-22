@@ -87,8 +87,8 @@ namespace Foodie360.Controllers
         {
             var mail = new MailRequest();
             mail.ToEmail = user.Email;
-            mail.Subject = "User created";
-            mail.Body = "some checking message";
+            mail.Subject = "Welcome to Foodie360";
+            mail.Body = $"<h3>Hello {user.UserName},</h3><br><p>Welcome to the India's favourite online food ordering service.</p><br>Enjoy the most delicious food being made in your own locality delivered at your door steps.</br>";
             await _mailService.SendEmailAsync(mail);
             string password = user.PassWord;
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
