@@ -24,7 +24,7 @@ namespace Foodie360.Models
         public virtual Discount? Discount { get; set; }
         public virtual Store? Store { get; set; }
         public virtual ProductType? Type { get; set; }
-        public virtual ICollection<Cart> Carts { get; set; }
-        public virtual ICollection<OrderedItem> OrderedItems { get; set; }
+        public virtual ICollection<Cart>? Carts { get; set; }
+        public virtual ICollection<OrderedItem>? OrderedItems { get; set; }
     }
 }

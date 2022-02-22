@@ -16,6 +16,6 @@ namespace Foodie360.Models
         public string? Active { get; set; }
         public string? ServedAs { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product>? Products { get; set; }
     }
 }

@@ -19,6 +19,6 @@ namespace Foodie360.Models
 
         public virtual OrderStatus? OrderStatusNavigation { get; set; }
         public virtual User? User { get; set; }
-        public virtual ICollection<OrderedItem> OrderedItems { get; set; }
+        public virtual ICollection<OrderedItem>? OrderedItems { get; set; }
     }
 }

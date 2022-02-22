@@ -20,6 +20,6 @@ namespace Foodie360.Models
 
         public virtual User? Admin { get; set; }
         public virtual StoreType? StoreTypeNavigation { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product>? Products { get; set; }
     }
 }

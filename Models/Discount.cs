@@ -17,6 +17,6 @@ namespace Foodie360.Models
         public int Validity { get; set; }
         public string? Active { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product>? Products { get; set; }
     }
 }

@@ -14,6 +14,6 @@ namespace Foodie360.Models
         public string? StoreType1 { get; set; }
         public string? Active { get; set; }
 
-        public virtual ICollection<Store> Stores { get; set; }
+        public virtual ICollection<Store>? Stores { get; set; }
     }
 }

@@ -22,9 +22,9 @@ namespace Foodie360.Models
         public string? UserRole { get; set; }
         public string PassWord { get; set; } = null!;
 
-        public virtual ICollection<Cart> Carts { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<Store> Stores { get; set; }
-        public virtual ICollection<TransactionHistory> TransactionHistories { get; set; }
+        public virtual ICollection<Cart>? Carts { get; set; }
+        public virtual ICollection<Order>? Orders { get; set; }
+        public virtual ICollection<Store>? Stores { get; set; }
+        public virtual ICollection<TransactionHistory>? TransactionHistories { get; set; }
     }
 }
