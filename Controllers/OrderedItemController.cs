@@ -9,12 +9,13 @@ using Microsoft.EntityFrameworkCore;
 using Foodie360.Models;
 using Microsoft.AspNetCore.Authorization;
 
-
 namespace Foodie360.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(
+        AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme
+    )]
     public class OrderedItemController : ControllerBase
     {
         private readonly foodieContext _context;

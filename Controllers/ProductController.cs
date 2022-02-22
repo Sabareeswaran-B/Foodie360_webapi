@@ -10,7 +10,7 @@ using Foodie360.Models;
 
 namespace Foodie360.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[action]")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -40,6 +40,22 @@ namespace Foodie360.Controllers
             }
 
             return product;
+        }
+
+        // GET: api/product/5
+        [HttpGet("{id}")]
+        public async Task<IEnumerable<Product>> FromSingleStore(int id)
+        {
+            var product = await _context.Products.ToListAsync();
+
+            // if (product == null)
+            // {
+            //     return NotFound();
+            // }
+
+            var res = product.Where(x => x.StoreId == id);
+
+            return res;
         }
 
         // PUT: api/product/5

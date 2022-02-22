@@ -12,8 +12,10 @@ using Microsoft.AspNetCore.Authorization;
 namespace Foodie360.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]    
-    [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
+    [ApiController]
+    [Authorize(
+        AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme
+    )]
     public class OrderStatusController : ControllerBase
     {
         private readonly foodieContext _context;
@@ -83,7 +85,11 @@ namespace Foodie360.Controllers
             _context.OrderStatuses.Add(orderStatus);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetOrderStatus", new { id = orderStatus.StatusId }, orderStatus);
+            return CreatedAtAction(
+                "GetOrderStatus",
+                new { id = orderStatus.StatusId },
+                orderStatus
+            );
         }
 
         // DELETE: api/OrderStatus/5

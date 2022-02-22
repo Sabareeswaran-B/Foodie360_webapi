@@ -13,7 +13,9 @@ namespace Foodie360.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(
+        AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme
+    )]
     public class TransactionHistoryController : ControllerBase
     {
         private readonly foodieContext _context;
@@ -47,7 +49,10 @@ namespace Foodie360.Controllers
         // PUT: api/TransactionHistory/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTransactionHistory(int id, TransactionHistory transactionHistory)
+        public async Task<IActionResult> PutTransactionHistory(
+            int id,
+            TransactionHistory transactionHistory
+        )
         {
             if (id != transactionHistory.TransactionId)
             {
@@ -78,12 +83,18 @@ namespace Foodie360.Controllers
         // POST: api/TransactionHistory
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TransactionHistory>> PostTransactionHistory(TransactionHistory transactionHistory)
+        public async Task<ActionResult<TransactionHistory>> PostTransactionHistory(
+            TransactionHistory transactionHistory
+        )
         {
             _context.TransactionHistories.Add(transactionHistory);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTransactionHistory", new { id = transactionHistory.TransactionId }, transactionHistory);
+            return CreatedAtAction(
+                "GetTransactionHistory",
+                new { id = transactionHistory.TransactionId },
+                transactionHistory
+            );
         }
 
         // DELETE: api/TransactionHistory/5
