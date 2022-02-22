@@ -7,27 +7,26 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Foodie360.Models;
-using Microsoft.AspNetCore.Authorization;
+using Foodie360.Services;
 
 namespace Foodie360.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(
-        AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme
-    )]
     public class UserController : ControllerBase
     {
         private readonly foodieContext _context;
+        
+    private readonly IMailService _mailService;
 
-        public UserController(foodieContext context)
+        public UserController(foodieContext context, IMailService mailService)
         {
             _context = context;
+            _mailService = mailService;
         }
 
         // GET: api/User
         [HttpGet]
-        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
@@ -84,9 +83,13 @@ namespace Foodie360.Controllers
         // POST: api/User
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        [AllowAnonymous]
         public async Task<ActionResult<User>> PostUser(User user)
         {
+            var mail = new MailRequest();
+            mail.ToEmail = user.Email;
+            mail.Subject = "User created";
+            mail.Body = "some checking message";
+            await _mailService.SendEmailAsync(mail);
             string password = user.PassWord;
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
             user.PassWord = passwordHash;

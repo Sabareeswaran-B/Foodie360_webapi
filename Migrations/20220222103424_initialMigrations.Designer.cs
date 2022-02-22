@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Foodie360.Migrations
 {
     [DbContext(typeof(foodieContext))]
-    [Migration("20220222050629_initialMigrations")]
+    [Migration("20220222103424_initialMigrations")]
     partial class initialMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -467,6 +467,9 @@ namespace Foodie360.Migrations
                         .HasColumnType("int")
                         .HasColumnName("balance")
                         .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PassWord")
                         .IsRequired()

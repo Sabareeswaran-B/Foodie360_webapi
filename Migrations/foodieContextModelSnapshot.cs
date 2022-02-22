@@ -466,6 +466,9 @@ namespace Foodie360.Migrations
                         .HasColumnName("balance")
                         .HasDefaultValueSql("((0))");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PassWord")
                         .IsRequired()
                         .HasMaxLength(200)

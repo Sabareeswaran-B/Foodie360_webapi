@@ -79,6 +79,7 @@ namespace Foodie360.Migrations
             //         user_name = table.Column<string>(type: "varchar(200)", unicode: false, maxLength: 200, nullable: false),
             //         reg_no = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true),
             //         phone_no = table.Column<string>(type: "varchar(10)", unicode: false, maxLength: 10, nullable: true),
+            //         Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
             //         balance = table.Column<int>(type: "int", nullable: true, defaultValueSql: "((0))"),
             //         active = table.Column<string>(type: "varchar(5)", unicode: false, maxLength: 5, nullable: true, defaultValueSql: "('true')"),
             //         user_role = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: true, defaultValueSql: "('user')"),

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Foodie360.Extensions;
 using Foodie360.Models;
+using Foodie360.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 AddJWTTokenServicesExtensions.AddJWTTokenServices(builder.Services, builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddCors();
-
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.AddTransient<IMailService, MailService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(

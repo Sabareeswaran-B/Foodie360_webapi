@@ -17,6 +17,7 @@ namespace Foodie360.Models
         public string UserName { get; set; } = null!;
         public string? RegNo { get; set; }
         public string? PhoneNo { get; set; }
+        public string? Email { get; set; }
         public int? Balance { get; set; }
         public string? Active { get; set; }
         public string? UserRole { get; set; }
