@@ -8,16 +8,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Foodie360.Models;
 using Foodie360.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Foodie360.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+     [Authorize(
+            AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme
+        )]
     public class UserController : ControllerBase
     {
         private readonly foodieContext _context;
-        
-    private readonly IMailService _mailService;
+
+        private readonly IMailService _mailService;
 
         public UserController(foodieContext context, IMailService mailService)
         {
@@ -34,6 +38,7 @@ namespace Foodie360.Controllers
 
         // GET: api/User/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
             var user = await _context.Users.FindAsync(id);
@@ -83,12 +88,14 @@ namespace Foodie360.Controllers
         // POST: api/User
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult<User>> PostUser(User user)
         {
             var mail = new MailRequest();
             mail.ToEmail = user.Email;
             mail.Subject = "Welcome to Foodie360";
-            mail.Body = $"<h3>Hello {user.UserName},</h3><br><p>Welcome to the India's favourite online food ordering service.</p><br>Enjoy the most delicious food being made in your own locality delivered at your door steps.</br>";
+            mail.Body =
+                $"<h3>Hello {user.UserName},</h3><br><p>Welcome to the India's favourite online food ordering service.</p><br>Enjoy the most delicious food being made in your own locality delivered at your door steps.</br>";
             await _mailService.SendEmailAsync(mail);
             string password = user.PassWord;
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(password);
@@ -101,6 +108,7 @@ namespace Foodie360.Controllers
 
         // DELETE: api/User/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             var user = await _context.Users.FindAsync(id);

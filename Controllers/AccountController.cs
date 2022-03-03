@@ -86,7 +86,7 @@ namespace Foodie360.Controllers
             var token = authorization[0].Split(" ")[1];
             var jwthandler = new JwtSecurityTokenHandler();
             var read = jwthandler.ReadJwtToken(token);
-            return Ok(read);
+            return Ok(token);
         }
     }
 }
