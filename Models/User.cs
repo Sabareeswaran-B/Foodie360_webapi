@@ -22,7 +22,6 @@ namespace Foodie360.Models
         public int? Balance { get; set; }
         public string? Active { get; set; }
         public string? UserRole { get; set; }
-        [JsonIgnore]
         public string PassWord { get; set; } = null!;
 
         public virtual ICollection<Cart>? Carts { get; set; }

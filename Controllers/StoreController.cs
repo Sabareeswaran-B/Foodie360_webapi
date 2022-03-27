@@ -1,4 +1,5 @@
 #nullable disable
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,9 @@ namespace Foodie360.Controllers
 
         // GET: api/Store
         [HttpGet]
+        // [Authorize(
+        //     AuthenticationSchemes = Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme
+        // )]
         public async Task<ActionResult<IEnumerable<Store>>> GetStores()
         {
             return await _context.Stores.ToListAsync();
